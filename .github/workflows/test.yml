@@ -1,0 +1,31 @@
+name: HDD Harness
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias
+        run: |
+          pip install -r requirements.txt
+          pip install reportlab
+
+      - name: Ejecutar arnes de pruebas
+        run: python test_harness.py
+
+      - name: Validar reporte HDD
+        run: |
+          python -c "
+          import json
+          r = json.load(open('harness_report.json'))
+          assert r['harness_status'] == 'SUCCESS', f'Fallo: {r[\"errors\"]}'
+          print(f'Todas las aserciones OK: {len(r[\"assertions\"])} pasaron')
+          "

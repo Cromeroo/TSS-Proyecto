@@ -1,0 +1,29 @@
+=====================================================
+ INSTRUCCIONES - INICIAR UNA INTERACCION CON OPEnCODE
+=====================================================
+
+1. ACTIVAR ENTORNO VIRTUAL:
+   .\.venv\Scripts\Activate.ps1
+
+2. PROMPT INICIAL (copia y pega esto en OpenCode):
+
+   "Lee context_memory.md y agents.md para contexto.
+    Corre test_harness.py y lee harness_report.json.
+    Trabaja en la branch develop.
+    Si hay fallos, corrige pdf_to_audio.py o src/*.py
+    y repite el ciclo hasta SUCCESS.
+    Actualiza context_memory.md al final.
+    Commit con Conventional Commits.
+    Push a origin develop."
+
+3. FLUJO HDD (Harness-Driven Development):
+   - Cada cambio debe validarse con: python test_harness.py
+   - Solo se acepta cuando harness_status es SUCCESS
+   - Para ciclo automatico: python run_cycle.py --loop
+
+4. RECORDATORIOS:
+   - Branch principal: develop (trabajar ahi)
+   - Remote: https://github.com/Cromeroo/TSS-Proyecto.git
+   - skills.md exige: try-except, espanol, argparse
+   - No subir: .venv/, *.mp3, *.pdf, __pycache__/
+   - Commits: formato Conventional Commits
